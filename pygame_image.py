@@ -28,15 +28,21 @@ def main():
         
         kye_lst = pg.key.get_pressed()
         if kye_lst[pg.K_UP]: #上矢印を押したとき
-            kk_rect.move_ip(0, -1)
-        if kye_lst[pg.K_DOWN]:
-            kk_rect.move_ip(0, +1)
-        if kye_lst[pg.K_LEFT]:
-            kk_rect.move_ip(-1, 0)
-        if kye_lst[pg.K_RIGHT]:
-            kk_rect.move_ip(+2, 0)
+            a = -1
+            b = -1
+        elif kye_lst[pg.K_DOWN]:
+            a = -1
+            b = +1
+        elif kye_lst[pg.K_LEFT]:
+            a = -1
+            b = 0
+        elif kye_lst[pg.K_RIGHT]:
+            a = +2
+            b = 0
         else:
-            kk_rect.move_ip(-1, 0)
+            a = -1
+            b = 0
+        kk_rect.move_ip(a, b)
         screen.blit(kk_img, kk_rect) #kk_imageをkk_rectの設定に従って貼り付け
         pg.display.update()
         tmr += 1        
