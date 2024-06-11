@@ -17,7 +17,8 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [0, 0]) #背景画像を表すsurfase
+        x = tmr%800
+        screen.blit(bg_img, [-x, 0]) #背景画像を表すsurfase
         kk_rect = kk_img.get_rect() #こうかとんrectの抽出
         kk_rect.center = 300, 200
         screen.blit(kk_img, kk_rect) #kk_imageをkk_rectの設定に従って貼り付け
