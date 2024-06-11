@@ -13,6 +13,8 @@ def main():
     bg_img2 = pg.transform.flip(bg_img, True, False) #背景画像
     kk_img = pg.image.load("fig/3.png")
     kk_img = pg.transform.flip(kk_img, True, False)
+    kk_rect = kk_img.get_rect() #こうかとんrectの抽出
+    kk_rect.center = 300, 200
     tmr = 0
     while True:
         for event in pg.event.get():
@@ -23,8 +25,16 @@ def main():
         screen.blit(bg_img2, [-x+1600, 0])
         screen.blit(bg_img, [-x+3200, 0]) #背景画像を表すsurfase
         screen.blit(bg_img2, [-x+4800, 0])
-        kk_rect = kk_img.get_rect() #こうかとんrectの抽出
-        kk_rect.center = 300, 200
+        
+        kye_lst = pg.key.get_pressed()
+        if kye_lst[pg.K_UP]: #上矢印を押したとき
+            kk_rect.move_ip(0, -1)
+        if kye_lst[pg.K_DOWN]:
+            kk_rect.move_ip(0, +1)
+        if kye_lst[pg.K_LEFT]:
+            kk_rect.move_ip(-1, 0)
+        if kye_lst[pg.K_RIGHT]:
+            kk_rect.move_ip(+1, 0)
         screen.blit(kk_img, kk_rect) #kk_imageをkk_rectの設定に従って貼り付け
         pg.display.update()
         tmr += 1        
